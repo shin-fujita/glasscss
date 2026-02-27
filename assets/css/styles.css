@@ -278,10 +278,11 @@ button { font-family: inherit; }
   box-shadow: var(--shadow);
 }
 
+/* Base glass-card (all layouts) */
 .glass-card {
-  width: 100%;
-  max-width: 380px; /* scalable */
-  padding: 32px; /* slightly smaller for better spacing */
+  width: 100%;          /* always fill its container/grid column */
+  max-width: 380px;     /* default for smaller grids / 3-column layouts */
+  padding: 32px 32px 32px;
   border-radius: 26px;
   position: relative;
   overflow: visible;
@@ -291,10 +292,22 @@ button { font-family: inherit; }
 
   background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6); /* slightly lighter shadow */
+  box-shadow:
+    0 12px 36px rgba(0,0,0,0.45),
+    0 6px 18px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
 }
 
+/* Light theme tweak */
+html[data-theme="light"] .glass-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 4px 12px rgba(76, 201, 255, 0.15),
+    0 8px 24px rgba(28, 78, 216, 0.08);
+}
+
+/* Optional glow effects */
 .glass-card::before {
   content: "";
   position: absolute;
@@ -305,7 +318,6 @@ button { font-family: inherit; }
   animation: energyPulse 8s ease-in-out infinite;
   z-index: -1;
 }
-
 .glass-card::after {
   content: "";
   position: absolute;
@@ -318,55 +330,62 @@ button { font-family: inherit; }
     rgba(122, 92, 255, 0.8),
     rgba(76, 201, 255, 0.8)
   );
-
-  /* WebKit-prefixed mask for Safari/Chrome */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-
-  /* Standard mask for other modern browsers */
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
-
   opacity: 0.7;
   pointer-events: none;
 }
 
+/* ---------- Grid-aware max-widths ---------- */
+
+/* 2-column grid: allow cards to fill column */
+.grid-2 .glass-card {
+  max-width: 100%;
+}
+
+/* 3-column grid: keep nice max-width */
+.grid-3 .glass-card {
+  max-width: 380px;
+}
+
+/* Mobile override */
+@media (max-width: 440px) {
+  .glass-card {
+    max-width: 100%;
+    padding: 28px;
+  }
+}
 .hero-glass {
-  /* keep everything else the same */
   width: 100%;
   padding: 32px;
   border-radius: var(--radius2);
   position: relative;
+  overflow: hidden;
 
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
 
   background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    box-shadow:
+    0 12px 36px rgba(0,0,0,0.45),  /* main soft shadow */
+    0 6px 18px rgba(0,0,0,0.3);    /* secondary subtle depth */
   transition: all 0.3s ease;
-
-  overflow: hidden; /* clips any overflow so blur/glow doesn't bleed outside */
 }
 
-/* radial “energy glow” */
 .hero-glass::before {
   content: "";
   position: absolute;
-  inset: -80px; 
+  inset: -80px;
   background: radial-gradient(circle at center, rgba(76,201,255,0.35), rgba(122,92,255,0.25), transparent 65%);
   filter: blur(60px);
   opacity: 0.7;
   animation: energyPulse 8s ease-in-out infinite;
-
-  /* clip so glow can't create white halo at edges */
-  border-radius: inherit;
-  mask-image: linear-gradient(black 0%, black 100%);
-  -webkit-mask-image: linear-gradient(black 0%, black 100%);
   z-index: -1;
 }
 
-/* gradient highlight */
 .hero-glass::after {
   content: "";
   position: absolute;
@@ -382,11 +401,22 @@ button { font-family: inherit; }
 
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
 
   opacity: 0.7;
   pointer-events: none;
+}
+
+html[data-theme="light"] .hero-glass {
+  background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  border: 1px solid rgba(0,0,0,0.08);
+
+  /* lighter, colored shadows for light theme */
+  box-shadow:
+    0 6px 18px rgba(76,201,255,0.15),   /* soft blue glow */
+    0 12px 36px rgba(28,78,216,0.08);   /* subtle accent depth */
 }
 
 .icon-box {
@@ -426,6 +456,7 @@ button { font-family: inherit; }
   filter: drop-shadow(0 0 10px rgba(76,201,255,0.7));
 }
 
+
 .title-row {
   display: flex;
   align-items: center;
@@ -457,7 +488,9 @@ button { font-family: inherit; }
 html[data-theme="light"] .glass-card {
   background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
   border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    box-shadow:
+    0 4px 12px rgba(76, 201, 255, 0.15),   /* soft blue ambient shadow */
+    0 8px 24px rgba(28, 78, 216, 0.08);    /* deeper accent tone for depth */
 }
 
 html[data-theme="light"] .icon-box {
@@ -613,6 +646,19 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
+
+.glass-card h2 {
+  display: inline-flex;       /* keeps icon and text together */
+  align-items: flex-start;    /* icon top aligns with first line of text */
+  gap: 16px;                  /* horizontal space between icon and text */
+  margin: 0 0 12px;           /* bottom margin to match h2 → p spacing */
+}
+
+.glass-card h2 .icon-box {
+  flex-shrink: 0;             /* keep icon size fixed */
+  margin: 0;                  /* remove previous margin */
+}
+
 .section__sub {
   margin: 0;
   color: var(--muted2);
@@ -635,6 +681,15 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
+
+ul li {
+  margin-bottom: 14px; /* more spacing between bullets */
+}
+
+ul li:last-child {
+  margin-bottom: 0; /* keep last item tight */
+}
+
 
 .tile {
   padding: 22px;
