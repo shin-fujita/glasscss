@@ -330,7 +330,67 @@ button { font-family: inherit; }
   opacity: 0.7;
   pointer-events: none;
 }
+
+.hero-glass {
+  /* keep everything else the same */
+  width: 100%;
+  padding: 32px;
+  border-radius: var(--radius2);
+  position: relative;
+
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+
+  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  transition: all 0.3s ease;
+
+  overflow: hidden; /* clips any overflow so blur/glow doesn't bleed outside */
+}
+
+/* radial “energy glow” */
+.hero-glass::before {
+  content: "";
+  position: absolute;
+  inset: -80px; 
+  background: radial-gradient(circle at center, rgba(76,201,255,0.35), rgba(122,92,255,0.25), transparent 65%);
+  filter: blur(60px);
+  opacity: 0.7;
+  animation: energyPulse 8s ease-in-out infinite;
+
+  /* clip so glow can't create white halo at edges */
+  border-radius: inherit;
+  mask-image: linear-gradient(black 0%, black 100%);
+  -webkit-mask-image: linear-gradient(black 0%, black 100%);
+  z-index: -1;
+}
+
+/* gradient highlight */
+.hero-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    rgba(76, 201, 255, 0.8),
+    rgba(122, 92, 255, 0.8),
+    rgba(76, 201, 255, 0.8)
+  );
+
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 .icon-box {
+  flex-shrink: 0; /* keep square shape */
   width: 46px;
   height: 46px;
   border-radius: 14px;
@@ -364,6 +424,18 @@ button { font-family: inherit; }
   height: 22px;
   stroke: var(--accent);
   filter: drop-shadow(0 0 10px rgba(76,201,255,0.7));
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+.title-row h2 {
+  margin: 0; /* remove default h2 margin */
+  font-size: 1.25rem; /* optional: scale to fit card nicely */
+  line-height: 1.2;
 }
 
 @media (max-width: 440px) {
