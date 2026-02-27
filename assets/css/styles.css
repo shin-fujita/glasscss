@@ -2,7 +2,7 @@
 :root { 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 --font-heading: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
---font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
   /* Light theme (default) */
   --bg: #f6f7f9;
   --bg2: #ffffff;
@@ -338,6 +338,21 @@ html[data-theme="light"] .glass-card {
   pointer-events: none;
 }
 
+.glass-card--xl {
+  max-width: 100%;   /* let it fill the container */
+  margin: 0;         /* remove centering cap */
+  padding: 42px 48px;
+}
+
+.glass-card__note {
+  margin-top: 18px;
+  line-height: 1.2;
+}
+
+.product.glass-card {
+  padding: 40px 44px;
+}
+
 /* ---------- Grid-aware max-widths ---------- */
 
 /* 2-column grid: allow cards to fill column */
@@ -536,6 +551,7 @@ html[data-theme="dark"] .hero__left::after { opacity: 0.06; mix-blend-mode: scre
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.78rem;
+  margin-bottom: 12px;
 }
 .kicker .dot {
   width: 8px; height: 8px; border-radius: 99px;
@@ -552,11 +568,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .h1 {
-  margin: 14px 0 12px;
+  margin: 14px 0 24px;
   font-size: clamp(2.0rem, 2.4vw, 3.1rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
+
+p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .lead {
   margin: 0;
   font-size: 1.07rem;
@@ -571,7 +593,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   list-style: none;
   display: grid;
-  gap: 10px;
+  gap: 6px;
 }
 .hero__bullets li {
   display: flex;
@@ -583,7 +605,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero__bullets svg { width: 18px; height: 18px; margin-top: 2px; fill: var(--accent); }
 
 .hero__cta {
-  margin-top: 22px;
+  margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -684,12 +706,17 @@ h1, h2, h3, h4, h5, h6 {
 
 ul li {
   margin-bottom: 14px; /* more spacing between bullets */
+  color: var(--muted);
 }
 
 ul li:last-child {
   margin-bottom: 0; /* keep last item tight */
 }
 
+.glass-card__note {
+  margin-top: 16px;
+  line-height: 1.6;
+}
 
 .tile {
   padding: 22px;
@@ -767,6 +794,7 @@ hr.sep {
 .product {
   display: flex;
   flex-direction: column;
+  font-size: 0.92rem;
   gap: 10px;
 }
 
@@ -795,13 +823,20 @@ hr.sep {
   color: var(--text);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
+}
+.product__id svg,
+.product__id i {
+  width: 0.72rem;       /* match font-size */
+  height: 0.72rem;      /* match font-size */
+  margin-right: 4px;    /* space from text */
+  vertical-align: text-bottom; /* aligns better with small text */
+  stroke-width: 2;      /* optional: tweak line thickness if needed */
 }
 
 .product__stage {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   line-height: 1.3;
 }
 
@@ -821,18 +856,20 @@ hr.sep {
 
 .product__priceVal {
   display: block;
-  font-size: 1.12rem;
+  font-size: 1.4 rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
   margin-top: 2px;
 }
 
+
 .product__titleRow {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 2px;
+  margin-bottom: 10px;
 }
 
 .product__icon {
@@ -855,15 +892,18 @@ hr.sep {
 
 .product__title {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.2;
+  font-size: 0.98 rem;
+  line-height: 1.15;
   letter-spacing: -0.015em;
 }
 
 .product__desc {
   margin: 0;
   color: var(--muted);
-  line-height: 1.65;
+  font-size: 0.88 rem;
+  line-height: 1.4;
+  margin-top: 8px;
+  margin-bottom: 10px;
 }
 
 .product__facts {
@@ -893,8 +933,8 @@ hr.sep {
 .product__best {
   margin: 0;
   color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.55;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .product__cta {
