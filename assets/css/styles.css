@@ -312,14 +312,24 @@ button { font-family: inherit; }
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, rgba(76,201,255,0.8), rgba(122,92,255,0.8), rgba(76,201,255,0.8));
+  background: linear-gradient(
+    120deg,
+    rgba(76, 201, 255, 0.8),
+    rgba(122, 92, 255, 0.8),
+    rgba(76, 201, 255, 0.8)
+  );
+
+  /* WebKit-prefixed mask for Safari/Chrome */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+
+  /* Standard mask for other modern browsers */
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
+
   opacity: 0.7;
   pointer-events: none;
 }
-
 .icon-box {
   width: 46px;
   height: 46px;
@@ -358,9 +368,11 @@ button { font-family: inherit; }
 
 @media (max-width: 440px) {
   .glass-card {
-    width: 90%;
-    padding: 28px;
+    width: 100%; /* span full container width */
+    max-width: none; /* remove previous max-width */
+    padding: 28px; /* keep padding slightly smaller */
   }
+}
   .icon-box {
     width: 40px;
     height: 40px;
@@ -369,7 +381,6 @@ button { font-family: inherit; }
     width: 18px;
     height: 18px;
   }
-}
 
 html[data-theme="light"] .glass-card {
   background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
