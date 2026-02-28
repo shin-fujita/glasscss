@@ -425,9 +425,14 @@ html[data-theme="light"] .glass-card {
   max-width: 100%;
 }
 
-/* 3-column grid: keep nice max-width */
 .grid-3 .glass-card {
   max-width: 380px;
+}
+
+@media (max-width: 860px) {
+  .grid-3 .glass-card {
+    max-width: 100%;
+  }
 }
 
 /* Mobile override */
@@ -436,6 +441,8 @@ html[data-theme="light"] .glass-card {
     max-width: 100%;
     padding: 28px;
   }
+
+  
 }
 .hero-glass {
   width: 100%;
@@ -666,8 +673,9 @@ p {
 .portrait {
   border-radius: var(--radius2);
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: #000;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: color-mix(in srgb, var(--surface2) 74%, transparent);
   position: relative;
 }
 .portrait img {
