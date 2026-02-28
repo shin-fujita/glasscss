@@ -118,6 +118,26 @@
 
   initSocialToggle();
 
+const sections = document.querySelectorAll('.section');
+
+sections.forEach((section, idx) => {
+  section.classList.add(idx % 2 === 0 ? 'reveal-left' : 'reveal-right', 'reveal');
+});
+
+const observer = new IntersectionObserver(
+  (entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        obs.unobserve(entry.target); // animate only once
+      }
+    });
+  },
+  { threshold: 0.15 } // trigger when ~15% of section is visible
+);
+
+sections.forEach(section => observer.observe(section));
+
 // Testimonials carousel — one at a time (robust + works from local file://)
   function initTestimonialsCarousel() {
     const carousels = document.querySelectorAll("[data-carousel]");
