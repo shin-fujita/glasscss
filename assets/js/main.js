@@ -118,25 +118,41 @@
 
   initSocialToggle();
 
-const sections = document.querySelectorAll('.section');
+  document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".section");
 
-sections.forEach((section, idx) => {
-  section.classList.add(idx % 2 === 0 ? 'reveal-left' : 'reveal-right', 'reveal');
-});
-
-const observer = new IntersectionObserver(
-  (entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        obs.unobserve(entry.target); // animate only once
-      }
+  // Mobile override: show all sections immediately
+  if (window.innerWidth <= 640) {
+    sections.forEach(sec => {
+      sec.style.opacity = 1;
+      sec.style.transform = "none";
     });
-  },
-  { threshold: 0.15 } // trigger when ~15% of section is visible
-);
+    return;
+  }
 
-sections.forEach(section => observer.observe(section));
+  // Initial setup: hide sections off-screen left/right
+  sections.forEach((sec, i) => {
+    sec.style.opacity = 0;
+    sec.style.transform = `translateX(${i % 2 === 0 ? "-50px" : "50px"})`;
+    sec.style.transition = "opacity 0.7s ease-out, transform 0.7s ease-out";
+  });
+
+  // IntersectionObserver for reveal
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = "translateX(0)";
+          observer.unobserve(entry.target); // only reveal once
+        }
+      });
+    },
+    { threshold: 0.2 } // trigger when 20% of the section is visible
+  );
+
+  sections.forEach(sec => observer.observe(sec));
+});
 
 // Testimonials carousel — one at a time (robust + works from local file://)
   function initTestimonialsCarousel() {
