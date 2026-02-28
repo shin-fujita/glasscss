@@ -303,11 +303,8 @@ html[data-theme="light"] .btn--primary {
   background: linear-gradient(
     135deg,
     rgba(28,78,216,0.85),
-    rgba(76,201,255,0.8)
-  );
-
-  border: 1px solid rgba(0,0,0,0.08);
-
+    rgba(76,201,255,0.8));
+  border: 1px solid rgba(255,255,255,0.7);
   box-shadow:
     0 6px 18px rgba(76,201,255,0.25),
     0 10px 30px rgba(28,78,216,0.15);
@@ -958,12 +955,6 @@ hr.sep {
   height: 18px;
 }
 
-html[data-theme="light"] .product__icon {
-  background: rgba(255,255,255,0.6);
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
 .product__title {
   margin: 0;
   font-size: 1.8 rem;
@@ -1145,96 +1136,95 @@ html[data-theme="dark"] .toptal-badge__wordmark path { fill: #fff; }
 }
 
 /* Testimonials carousel */
-.tcarousel{ --gap: 0px; --perView: 1; }
+.tcarousel{
+  --gap: 12px;
+  --perView: 1;
+}
+
 .tcarousel__head{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:12px; margin: 10px 0 14px;
-}
-.tcarousel__head--title{ margin: 0 0 16px; }
-.tcarousel__hint{ color: var(--muted2); font-size: 0.95rem; }
-.tcarousel__controls{ display:flex; align-items:center; gap:10px; }
-/* Carousel buttons (prev/next) */
-.tcarousel__btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  /* glass effect */
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  /* subtle shadow */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-
-  color: var(--fg);
-  cursor: pointer;
-  transition: all 0.25s ease;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin: 10px 0 14px;
 }
 
-.tcarousel__btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+.tcarousel__head--title{
+  margin: 0 0 16px;
+}
+
+.tcarousel__hint{
+  color: var(--muted2);
+  font-size: 0.95rem;
+}
+
+.tcarousel__controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.tcarousel__btn{
+  width:40px;
+  height:40px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  background: color-mix(in srgb, var(--surface2) 74%, transparent);
+  color: var(--muted);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.tcarousel__btn:hover{
   border-color: rgba(90, 130, 255, 0.45);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.tcarousel__btn:disabled {
-  opacity: 0.45;
+.tcarousel__btn:disabled{
+  opacity: .45;
   cursor: default;
 }
 
-/* Dots */
-.tcarousel__dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow: auto;
-  max-width: 50vw;
+.tcarousel__btn svg{
+  width:20px;
+  height:20px;
+}
+
+.tcarousel__dots{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  max-width: min(520px, 50vw);
+  overflow:auto;
   padding-bottom: 2px;
   scrollbar-width: none;
 }
 
-.tcarousel__dots::-webkit-scrollbar {
-  display: none;
+.tcarousel__dots::-webkit-scrollbar{
+  display:none;
 }
 
-.tcarousel__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 12px; /* match carousel button rounding */
-  
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  cursor: pointer;
-  transition: all 0.2s ease;
+.tcarousel__dot{
+  width:8px;
+  height:8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor:pointer;
 }
 
-.tcarousel__dot[data-active] {
-  background: var(--accent);
-  border-color: rgba(90, 130, 255, 0.65);
-  box-shadow: 0 0 8px rgba(90, 130, 255, 0.4);
+.tcarousel__dot[data-active]{
+  background: color-mix(in srgb, var(--accent) 26%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--border));
 }
 
-/* Light mode */
-html[data-theme="light"] .tcarousel__dot {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-html[data-theme="light"] .tcarousel__dot[data-active] {
-  background: var(--accent);
-  border-color: rgba(76, 201, 255, 0.65);
-  box-shadow: 0 0 8px rgba(76, 201, 255, 0.4);
-}
 .tcarousel__viewport{
   overflow:hidden;
   border-radius: 22px;
 }
+
 .tcarousel__track{
   display:flex;
   gap: var(--gap);
@@ -1243,74 +1233,32 @@ html[data-theme="light"] .tcarousel__dot[data-active] {
   padding: 2px; /* avoid clipping shadow */
 }
 
-/* Light mode tweaks for carousel buttons and dots */
-html[data-theme="light"] .tcarousel__btn {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: var(--fg);
-  box-shadow: 0 4px 12px rgba(76, 201, 255, 0.15),
-              0 8px 24px rgba(28, 78, 216, 0.08);
-}
-
-html[data-theme="light"] .tcarousel__btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(76, 201, 255, 0.45);
-  box-shadow: 0 4px 12px rgba(76, 201, 255, 0.2),
-              0 8px 24px rgba(28, 78, 216, 0.1);
-}
-/* Glass-style testimonial card */
-.testimonial {
+.testimonial{
   flex: 0 0 100%;
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  justify-content: space-between; /* key */
   padding: clamp(32px, 3vw, 44px);
-  border-radius: 26px; /* match .glass-card */
+  border-radius: var(--radius2);
   position: relative;
-
-  /* glass effect */
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-  border: 1px solid rgba(255,255,255,0.18);
-
-  /* subtle shadow like .glass-card */
-  box-shadow:
-    0 12px 36px rgba(0,0,0,0.45),
-    0 6px 18px rgba(0,0,0,0.3);
-
-  transition: all 0.3s ease;
+  background: color-mix(in srgb, var(--surface2) 74%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  color: var(--muted);
 }
 
-/* Light theme tweak */
-html[data-theme="light"] .testimonial {
-  background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow:
-    0 4px 12px rgba(76, 201, 255, 0.15),
-    0 8px 24px rgba(28, 78, 216, 0.08);
+.testimonial::before{
+  content:none;
 }
 
-/* Optional glow effect (like .glass-card) */
-.testimonial::before {
-  content: "";
-  position: absolute;
-  inset: -40px; /* smaller than .glass-card to keep subtle */
-  background: radial-gradient(circle at center, rgba(76,201,255,0.15), rgba(122,92,255,0.1), transparent 65%);
-  filter: blur(40px);
-  opacity: 0.5;
-  z-index: -1;
-  border-radius: inherit;
-}
 .testimonial__quote{
   font-size: clamp(1.1rem, 0.8rem + 0.6vw, 1.35rem);
   line-height: 1.75;
   margin: 0;
   max-width: 60ch; /* tighter = more elegant */
 }
+
 .testimonial__by{
   display: flex;
   flex-direction: column;
@@ -1323,14 +1271,27 @@ html[data-theme="light"] .testimonial {
   font-weight: 600;
   color: var(--fg);
 }
-.testimonial__role{ font-size: .95rem; color: var(--muted2); }
 
-@media (max-width: 640px){
-  .tcarousel__head{ align-items:flex-start; flex-direction:column; }
-  .tcarousel__controls{ width:100%; justify-content:space-between; }
-  .tcarousel__dots{ max-width: 100%; }
+.testimonial__role{
+  font-size: .95rem;
+  color: var(--muted2);
 }
 
+@media (max-width: 640px){
+  .tcarousel__head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .tcarousel__controls{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .tcarousel__dots{
+    max-width: 100%;
+  }
+}
 .partner-cta{
   display: flex;
   justify-content: center;
