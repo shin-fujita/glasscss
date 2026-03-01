@@ -661,12 +661,18 @@ p {
 }
 
 .hero__right {
-  padding: 22px;
+  padding: 0px;
   display: grid;
-  gap: 14px;
+  gap: 22px;
 }
+
+.hero__right .stats,
+.hero__right .toptal-badge {
+  padding: 0 22px 22px;
+}
+
 .portrait {
-  border-radius: var(--radius2);
+  border-radius: var(--radius2) var(--radius2) 0 0;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -1166,7 +1172,11 @@ html[data-theme="dark"] .toptal-badge__wordmark path { fill: #fff; }
 @media (max-width: 520px) {
   .container { width: min(var(--container), calc(100% - 28px)); }
   .hero__left { padding: 24px; }
-  .hero__right { padding: 16px; }
+  .hero__right { padding: 0; }
+  .hero__right .stats,
+  .hero__right .toptal-badge {
+    padding: 0 16px 16px;
+  }
   .btn { width: 100%; }
   .iconbar { gap: 8px; }
   .icon-link { width: 38px; height: 38px; border-radius: 14px; }
@@ -1289,9 +1299,17 @@ html[data-theme="dark"] .toptal-badge__wordmark path { fill: #fff; }
   border-radius: var(--radius2);
   position: relative;
   background: color-mix(in srgb, var(--surface2) 74%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  border: 1px solid var(--border);;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   color: var(--muted);
+}
+
+html[data-theme="light"] .testimonial {
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+html[data-theme="dark"] .testimonial {
+  border: 1px solid rgba(255,255,255,0.10);
 }
 
 .testimonial::before{
