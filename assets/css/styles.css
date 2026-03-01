@@ -1412,8 +1412,8 @@ html[data-theme="dark"] .toptal-badge__wordmark path { fill: #fff; }
 @media (max-width: 768px) {
   .glass-card,
   .hero-glass {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background: var(--surface);
   }
 }
