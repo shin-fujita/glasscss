@@ -356,8 +356,8 @@ html[data-theme="light"] .btn--primary {
   position: relative;
   overflow: visible;
 
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
 
   background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   border: 1px solid rgba(255,255,255,0.18);
@@ -378,10 +378,10 @@ html[data-theme="light"] .glass-card {
 .glass-card::before {
   content: "";
   position: absolute;
-  inset: -80px;
+  inset: -40px;
   background: radial-gradient(circle at center, rgba(76,201,255,0.35), rgba(122,92,255,0.25), transparent 65%);
-  filter: blur(60px);
-  opacity: 0.7;
+  filter: blur(30px);
+  opacity: 0.35;
   animation: energyPulse 8s ease-in-out infinite;
   z-index: -1;
 }
@@ -393,15 +393,15 @@ html[data-theme="light"] .glass-card {
   padding: 1px;
   background: linear-gradient(
     120deg,
-    rgba(76, 201, 255, 0.8),
-    rgba(122, 92, 255, 0.8),
-    rgba(76, 201, 255, 0.8)
+    rgba(76, 201, 255, 0.3),
+    rgba(122, 92, 255, 0.3),
+    rgba(76, 201, 255, 0.3)
   );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
-  opacity: 0.7;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -462,10 +462,10 @@ html[data-theme="light"] .glass-card {
 .hero-glass::before {
   content: "";
   position: absolute;
-  inset: -80px;
+  inset: -40px;
   background: radial-gradient(circle at center, rgba(76,201,255,0.35), rgba(122,92,255,0.25), transparent 65%);
-  filter: blur(60px);
-  opacity: 0.7;
+  filter: blur(30px);
+  opacity: 0.35;
   animation: energyPulse 8s ease-in-out infinite;
   z-index: -1;
 }
@@ -478,9 +478,9 @@ html[data-theme="light"] .glass-card {
   padding: 1px;
   background: linear-gradient(
     120deg,
-    rgba(76, 201, 255, 0.8),
-    rgba(122, 92, 255, 0.8),
-    rgba(76, 201, 255, 0.8)
+    rgba(76, 201, 255, 0.3),
+    rgba(122, 92, 255, 0.3),
+    rgba(76, 201, 255, 0.3)
   );
 
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -489,7 +489,7 @@ html[data-theme="light"] .glass-card {
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
 
-  opacity: 0.7;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -497,8 +497,8 @@ html[data-theme="light"] .hero-glass {
   background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
   border: 1px solid rgba(0,0,0,0.08);
   box-shadow:
-    0 6px 18px rgba(76,201,255,0.15),
-    0 12px 36px rgba(28,78,216,0.08);
+    0 6px 18px rgba(76,201,255,0.08),
+    0 12px 36px rgba(28,78,216,0.04);
 }
 
 .icon-box {
@@ -552,8 +552,8 @@ html[data-theme="light"] .glass-card {
   background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
   border: 1px solid rgba(0,0,0,0.08);
     box-shadow:
-    0 4px 12px rgba(76, 201, 255, 0.15),
-    0 8px 24px rgba(28, 78, 216, 0.08);
+    0 4px 12px rgba(76, 201, 255, 0.08),
+    0 8px 24px rgba(28, 78, 216, 0.04);
 }
 
 html[data-theme="light"] .icon-box {
